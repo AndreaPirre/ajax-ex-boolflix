@@ -2,7 +2,7 @@
 <html lang="en" dir="ltr">
     <head>
         <meta charset="utf-8">
-        <title>BoolFix</title>
+        <title>BoolFlix</title>
         <link rel="stylesheet" href="css/style.css">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <script src='https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.0/jquery.min.js'></script>
@@ -21,7 +21,7 @@
 
                     <div class="navbar_right">
                         <div class="input_search_container">
-                            <input id="search_input" type="text" name="" value="" placeholder="cerca un film"> <button id="search_btn" type="button" name="button">Cerca</button>
+                            <input id="search_input" type="text" name="" value="" placeholder="Cerca un film..."> <button id="search_btn" type="button" name="button">Cerca</button>
                         </div>
 
                     </div>
@@ -30,9 +30,26 @@
 
             </header>
 
+            <main>
+                <div class="container_content">
+                    <div class="container_poster_film">
+
+                    </div>
+                </div>
+            </main>
+
         </div>
 
-
+        <script id="template-poster" type="text/x-handlebars-template">
+              <div class="poster">
+                <div class="descrizione">
+                  <h4>Titolo: <span>{{title}}</span></h4>
+                  <h4>Titolo Originale: <span>{{original_title}}</span></h4>
+                  <h4>Lingua: {{original_language}}</h4>
+                  <h4>Voto: {{vote_average}}</h4>
+                </div>
+              </div>
+        </script>
 
         <script type="text/javascript" src="js/script.js"></script>
     </body>

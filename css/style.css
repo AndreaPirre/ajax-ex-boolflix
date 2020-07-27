@@ -41,3 +41,42 @@
     margin-left: 10px;
     padding: 5px;
 }
+
+.container_content{
+  max-width: 1350px;
+  padding: 20px 0;
+
+  margin: auto;
+}
+.container_poster_film{
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  justify-content: space-around;
+  padding: 10px;
+
+}
+
+.poster{
+  display: flex;
+  flex-direction: column;
+  flex-wrap: wrap;
+  width: 342px;
+  height: 500px;
+  margin: 20px 0;
+  background-color: black;
+  border: 1px solid white;
+  color: white;
+  position: relative;
+  overflow-y: scroll;
+}
+
+.descrizione{
+  position: absolute;
+  height: 100%;
+  width: 100%;
+  padding: 20px;
+  top: 0;
+  right: 0;
+
+}
