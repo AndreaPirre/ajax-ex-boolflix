@@ -23,10 +23,19 @@
 
         </div>
 
-        <script id="film-template" type="text/x-handlebars-template">
+        <script id="film-template" id="serie-template" type="text/x-handlebars-template">
               <li>
                   {{ title }} <br>
                   {{ original_title }} <br>
+                  {{ original_language }} <br>
+                  {{ vote_average }}
+              </li>
+        </script>
+
+        <script id="serie-template" type="text/x-handlebars-template">
+              <li>
+                  {{ name }} <br>
+                  {{ original_name }} <br>
                   {{ original_language }} <br>
                   {{ vote_average }}
               </li>
