@@ -11,44 +11,22 @@
     </head>
     <body>
 
-        <div class="container_main">
-            <header>
+        <div class="container">
+            <div class="header">
+                <input id="query" placeholder="Cerca un film...">
+                <button id="search_btn" type="button">Cerca</button>
+            </div>
 
-                <div class="navbar">
-                    <div class="navbar_left">
-
-                    </div>
-
-                    <div class="navbar_right">
-                        <div class="input_search_container">
-                            <input id="search_input" type="text" name="" value="" placeholder="Cerca un film..."> <button id="search_btn" type="button" name="button">Cerca</button>
-                        </div>
-
-                    </div>
-
-                </div>
-
-            </header>
-
-            <main>
-                <div class="container_content">
-                    <div class="container_poster_film">
-
-                    </div>
-                </div>
-            </main>
+            <div id="results" class="results">
+                <ul></ul>
+            </div>
 
         </div>
 
-        <script id="template-poster" type="text/x-handlebars-template">
-              <div class="poster">
-                <div class="descrizione">
-                  <h4>Titolo: <span>{{title}}</span></h4>
-                  <h4>Titolo Originale: <span>{{original_title}}</span></h4>
-                  <h4>Lingua: {{original_language}}</h4>
-                  <h4>Voto: {{vote_average}}</h4>
-                </div>
-              </div>
+        <script id="film-template" type="text/x-handlebars-template">
+              <li>
+                  {{ titolo }}
+              </li>
         </script>
 
         <script type="text/javascript" src="js/script.js"></script>

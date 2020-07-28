@@ -9,63 +9,52 @@
 // 3.Lingua
 // 4.Voto
 
-$(document).ready(function(){
+function addSearchClickListener() {
+    var target = $('#search_btn');
+    target.click(mostraFilm)
+}
 
-            var urlBase="https://api.themoviedb.org/3";
+function mostraFilm(){
 
-            $('#search_input').keydown(function(event){
-            if (event.which==13) {
-              var filmCercato=$('#search_input').val();
-              cercaFilm(filmCercato,urlBase);
+    var target = $('#query');
+    var query = target.val();
+    $.ajax({
 
-                }
-            });
+        url:'https://api.themoviedb.org/3/search/movie/',
+        method:'GET',
+        data: {
+            'api_key': '603faf8c2a684dc57112e107f86af1ba',
+            'query': query
+        },
 
-            function stampaFilm(elencofilm){
+        success: function(data) {
+            var film = data['results'];
 
-            for (var i = 0; i < elencofilm.length; i++) {
-              var titoloFilm= elencofilm[i].title;
-              var titoloOriginale= elencofilm[i].original_title;
-              var linguaOriginale= elencofilm[i].original_language;
-              var votoFilm= elencofilm[i].vote_average;
+            var target = $('#results ul');
+            var template = $('#film-template').html();
+            var compiled = Handlebars.compile(template);
+            // ciclo for
+            for (var i = 0; i < film.length; i++) {
 
-          }};
-
-
-            function cercaFilm(ricercaUtente,urlBase){
-
-                $.ajax({
-                  url:urlBase+"/search/movie",
-                  method:"GET",
-                  data: {
-                    'api_key':"603faf8c2a684dc57112e107f86af1ba",
-                    'query': ricercaUtente,
-                    'language': "it"
-                  },
-                  success:function(data){
-                    var filmtrovati=data.results;
-                    console.log(filmtrovati);
-                    stampaFilm(filmtrovati);
-                  },
-                  error: function(){
-                    alert("Ops, qualcosa è andato storto");
-                }}
-
-            )};
+                var film = film[i];
+                
+                var filmHTML = compiled({
+                    titolo: film['title']
+                });
+                target.append(filmHTML);
+            }
+        },
+        error: function(err) {
+            console.log(err);
+        }
+    });
+}
 
 
+function init() {
 
-});
+    addSearchClickListener();
 
+}
 
-
-
-// function init() {
-//
-//
-//
-// console.log("hello world");
-//
-// }
-//
-// $(document).ready(init);
+$(document).ready(init);
