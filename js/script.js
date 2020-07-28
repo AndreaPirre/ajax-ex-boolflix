@@ -18,9 +18,10 @@ function mostraFilm(){
 
     var target = $('#query');
     var query = target.val();
+    target.val('');
     $.ajax({
 
-        url:'https://api.themoviedb.org/3/search/movie/',
+        url:'https://api.themoviedb.org/3/search/movie',
         method:'GET',
         data: {
             'api_key': '603faf8c2a684dc57112e107f86af1ba',
@@ -28,20 +29,20 @@ function mostraFilm(){
         },
 
         success: function(data) {
-            var film = data['results'];
+            var films = data["results"];
 
             var target = $('#results ul');
+            target.text('');
             var template = $('#film-template').html();
             var compiled = Handlebars.compile(template);
+            
             // ciclo for
-            for (var i = 0; i < film.length; i++) {
+            for (var i = 0; i < films.length; i++) {
 
-                var film = film[i];
-                
-                var filmHTML = compiled({
-                    titolo: film['title']
-                });
+                var film = films[i];
+                var filmHTML = compiled(film);
                 target.append(filmHTML);
+
             }
         },
         error: function(err) {
