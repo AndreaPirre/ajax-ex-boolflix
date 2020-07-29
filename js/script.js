@@ -21,16 +21,27 @@
 
 function addSearchClickListener() {
     var target = $('#search_btn');
-    target.click(mostraFilm)
+    target.click(avviaRicerca);
 }
 
-
-
-function mostraFilm(){
+function avviaRicerca() {
 
     var target = $('#query');
     var query = target.val();
     target.val('');
+
+    var targetResult = $('#results ul');
+    targetResult.text('');
+
+    mostraFilm(query);
+    mostraSerieTv(query);
+}
+
+
+
+function mostraFilm(query){
+
+
     $.ajax({
 
         url:'https://api.themoviedb.org/3/search/movie',
@@ -44,7 +55,6 @@ function mostraFilm(){
             var films = data["results"];
 
             var target = $('#results ul');
-            target.text('');
             var template = $('#film-template').html();
             var compiled = Handlebars.compile(template);
 
@@ -98,45 +108,52 @@ function getFlag(lang) {
 
 }
 
-    function mostraSerieTv(){
+    function mostraSerieTv(query){
 
-        var target = $('#query');
-        var query = target.val();
-        target.val('');
+        $.ajax({
 
-    $.ajax({
-      url:'https://api.themoviedb.org/3/search/tv',
-      method:"GET",
-      data: {
-        'api_key': "603faf8c2a684dc57112e107f86af1ba",
-        'query': query,
-      },
-      success: function(data){
-        var serieTvTrovate=data['results'];
-        var target = $('#results ul');
-        target.text('');
-        var template = $('#serie-template').html();
-        var compiled = Handlebars.compile(template);
+            url:'https://api.themoviedb.org/3/search/tv',
+            method:'GET',
+            data: {
+                'api_key': '603faf8c2a684dc57112e107f86af1ba',
+                'query': query
+            },
 
-        for (var i = 0; i < serieTvTrovate.length; i++) {
+            success: function(data) {
+                var series = data["results"];
 
-            var serie = serieTvTrovate[i];
-            var serieHTML = compiled(serie);
-            target.append(serieHTML);
+                var target = $('#results ul');
+                var template = $('#serie-template').html();
+                var compiled = Handlebars.compile(template);
 
-        }
+                // ciclo for
+                for (var i = 0; i < series.length; i++) {
 
-      },
-      error: function(){
-        alert("Ops, qualcosa è andato storto");
-      }
-    });
+                    var serie = series[i];
+
+                    var vote = serie['vote_average'];
+                    serie.stars = getStars(vote);
+
+                    var lang = serie['original_language'];
+                    serie.flag = getFlag(lang);
+
+                    var serieHTML = compiled(serie);
+                    target.append(serieHTML);
+
+                }
+            },
+            error: function(err) {
+                console.log(err);
+            }
+        });
 }
 
 
 function init() {
 
     addSearchClickListener();
+
+    avviaRicerca();
 
 }
 
