@@ -21,10 +21,10 @@
 
 function addSearchClickListener() {
     var target = $('#search_btn');
-    target.click(mostraFilm, mostraSerieTv)
-    
-
+    target.click(mostraFilm)
 }
+
+
 
 function mostraFilm(){
 
@@ -52,6 +52,13 @@ function mostraFilm(){
             for (var i = 0; i < films.length; i++) {
 
                 var film = films[i];
+
+                var vote = film['vote_average'];
+                film.stars = getStars(vote);
+
+                var lang = film['original_language'];
+                film.flag = getFlag(lang);
+
                 var filmHTML = compiled(film);
                 target.append(filmHTML);
 
@@ -61,6 +68,33 @@ function mostraFilm(){
             console.log(err);
         }
     });
+
+}
+
+function getStars(vote) {
+    vote = Math.ceil(vote / 2);
+    var voteHTML = '';
+    for (var i=0; i<5; i++) {
+
+        if (i<vote) {
+
+            voteHTML += '<i class="fas fa-star" />'
+        } else {
+
+            voteHTML += '<i class="far fa-star" />'
+        }
+    }
+    return voteHTML;
+}
+
+function getFlag(lang) {
+
+    if (lang === 'it' || lang === 'en') {
+
+        return `<img class="flag" src="img/${lang}.png"`;
+
+    }
+        return lang;
 
 }
 

@@ -34,3 +34,8 @@ li {
 .results {
     margin: 100px;
 }
+
+.flag {
+    width: 60px;
+    height: 60px;
+}
