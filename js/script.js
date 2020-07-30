@@ -33,8 +33,9 @@ function mostraFilm(query){
         },
 
         success: function(data) {
-            var films = data["results"];
 
+            var films = data["results"];
+            
             var target = $('#results ul');
             var template = $('#film-template').html();
             var compiled = Handlebars.compile(template);
