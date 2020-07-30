@@ -18,13 +18,13 @@ li {
     overflow: auto;
     width: 100vw;
     height: 100vh;
-    background-color: #c1c1c1;
     color:#000;
 }
 
 .container > * {
     /* margin: auto; */
     text-align: center;
+
 }
 
 .header {

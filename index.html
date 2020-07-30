@@ -17,7 +17,7 @@
 
         <div class="container">
             <div class="header">
-                <input id="query" placeholder="Cerca un film...">
+                <input id="query" placeholder="Cerca un film..." value="matrix">
                 <button id="search_btn" type="button">Cerca</button>
             </div>
 
@@ -33,11 +33,10 @@
                   {{ title }} <br>
                   {{ original_title }} <br>
                   {{ original_language }} <br>
+                  <img class="poster" src="https://image.tmdb.org/t/p/w185{{ poster_path }}"><br>
                   {{{ flag }}} <br> <br>
                   {{ vote_average }}
                   {{{ stars }}}
-
-
               </li>
         </script>
 
@@ -47,6 +46,9 @@
                   {{ name }} <br>
                   {{ original_name }} <br>
                   {{ original_language }} <br>
+                  {{# if poster_path }}
+                  <img class="poster" src="https://image.tmdb.org/t/p/w185{{ poster_path }}">
+                  {{/if}} <br>
                   {{{ flag }}} <br> <br>
                   {{ vote_average }}
                   {{{ stars }}}
