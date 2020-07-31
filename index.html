@@ -39,12 +39,63 @@
             </div>
 
             <div id="results" class="results">
-                <ul></ul>
+                <div id="films" class="films"></div>
             </div>
 
         </div>
 
-        <script id="film-template"  type="text/x-handlebars-template">
+        <script id="card-template"  type="text/x-handlebars-template">
+            <div class="film">
+                <div class="film-poster">
+                    <span class="type">{{ type }}</span>
+                    <span class="title">{{ title }}{{ name }}</span>
+                    {{# if poster_path }}
+                    <img class="poster"src="https://image.tmdb.org/t/p/w342/{{ poster_path }}" alt="">
+                    {{/if}}
+                </div>
+                <ul class="film-info">
+                    <li>
+
+                        <span> <b>Titolo: </b></span>
+                        <span class="film-title">{{ title }}{{ name }}</span>
+
+                    </li>
+
+                    <li>
+
+                        <span><b>Titolo originale: </b></span>
+                        <span class="film-original-title">
+
+                            {{original_title}}{{original_name}}
+
+                        </span>
+
+                    </li>
+
+                    <li>
+                        <span><b>Lingua: </b></span>
+                        <span class="film-language">{{ original_language }}</span>
+                    </li>
+
+                    <li>
+                        <span><b>Voto: </b></span>
+                        <span class="film-voto"></span>
+                    </li>
+
+                    <li>
+                        <span><b>Overview: </b></span>
+                        <span class="film-overview">{{ overview }}</span>
+                    </li>
+
+                </ul>
+
+            </div>
+
+        </script>
+
+
+
+        <!-- <script id="film-template"  type="text/x-handlebars-template">
               <li>
                   MOVIE <br>
                   {{ title }} <br>
@@ -70,7 +121,7 @@
                   {{ vote_average }}
                   {{{ stars }}}
               </li>
-        </script>
+        </script> -->
 
         <script type="text/javascript" src="js/script.js"></script>
     </body>

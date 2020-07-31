@@ -11,11 +11,11 @@ function avviaRicerca() {
     var query = target.val();
     target.val('');
 
-    var targetResult = $('#results ul');
+    var targetResult = $('#results #films');
     targetResult.text('');
 
     mostraFilm(query);
-    mostraSerieTv(query);
+    // mostraSerieTv(query);
 }
 
 
@@ -35,9 +35,9 @@ function mostraFilm(query){
         success: function(data) {
 
             var films = data["results"];
-            
-            var target = $('#results ul');
-            var template = $('#film-template').html();
+
+            var target = $('#results #films');
+            var template = $('#card-template').html();
             var compiled = Handlebars.compile(template);
 
             // ciclo for
